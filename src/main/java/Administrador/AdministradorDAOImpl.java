@@ -12,7 +12,7 @@ import java.util.List;
 
 public class AdministradorDAOImpl implements AdministradorDAO {
 
-    //Atributos
+    //Atributos 
     private List<Administrador> adms;
     private LivroDAOImpl livroDAO;
     private UsuarioDAOImpl usuarioDAO;
