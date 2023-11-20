@@ -1,7 +1,7 @@
 package Pessoa;
 
 public abstract class Pessoa {
-    // Atributos /
+    // Atributos
     private String nome;
     private Integer id;
 
