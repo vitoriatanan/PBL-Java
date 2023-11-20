@@ -3,7 +3,7 @@ package Bibliotecario;
 import Pessoa.Pessoa;
 
 public class Bibliotecario extends Pessoa {
-    // Atributos
+    // Atributos K
     private String cargo;
     private String senhaAcesso;
 
