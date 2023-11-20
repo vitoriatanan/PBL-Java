@@ -5,7 +5,7 @@ import Livro.Livro;
 import Usuario.Usuario;
 
 public class EmprestimoDevolucao {
-    // Atributos /
+    // Atributos 
     private Livro livro;
     private Usuario usuario;
     private Date dataEmprestimo;
