@@ -1,7 +1,7 @@
 package Usuario;
 
 import java.util.List;
-
+//
 public interface UsuarioDAO {
     List<Usuario> create(Usuario usuario);
     Usuario read(Integer id);
