@@ -1,7 +1,7 @@
 package Bibliotecario;
 
 import java.util.List;
-
+//
 public interface BibliotecarioDAO {
     List<Bibliotecario> create(Bibliotecario bibliotecario);
     Bibliotecario read(Integer id);
