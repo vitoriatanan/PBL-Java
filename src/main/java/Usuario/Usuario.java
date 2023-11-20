@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario extends Pessoa {
-    // Atributos
+    // Atributos 
     private String endereco;
     private String telefone;
     private List<EmprestimoDevolucao> emprestimos;
