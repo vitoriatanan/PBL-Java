@@ -1,7 +1,7 @@
 package EmprestimoDevolucao;
 
 import java.util.List;
-
+//
 public interface EmprestimoDevolucaoDAO {
     List<EmprestimoDevolucao> create(EmprestimoDevolucao emprestimo);
     EmprestimoDevolucao read(EmprestimoDevolucao emprestimo);
