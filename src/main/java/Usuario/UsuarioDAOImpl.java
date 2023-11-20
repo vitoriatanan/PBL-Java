@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import Livro.Livro;
 import EmprestimoDevolucao.EmprestimoDevolucao;
 
-//
+
 public class UsuarioDAOImpl implements UsuarioDAO {
     private List<Usuario> usuarios;
     private LivroDAOImpl livroDAO;
