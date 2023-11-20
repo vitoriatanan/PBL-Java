@@ -4,15 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f39b9c48-3468-4d28-8a07-3997d1da11d4" name="Changes" comment="" />
+    <list default="true" id="f39b9c48-3468-4d28-8a07-3997d1da11d4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Administrador/AdministradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Administrador/AdministradorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Administrador/AdministradorDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Administrador/AdministradorDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bibliotecario/Bibliotecario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bibliotecario/Bibliotecario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bibliotecario/BibliotecarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bibliotecario/BibliotecarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Bibliotecario/BibliotecarioDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Bibliotecario/BibliotecarioDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EmprestimoDevolucao/EmprestimoDevolucao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EmprestimoDevolucao/EmprestimoDevolucao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EmprestimoDevolucao/EmprestimoDevolucaoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EmprestimoDevolucao/EmprestimoDevolucaoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EmprestimoDevolucao/EmprestimoDevolucaoDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EmprestimoDevolucao/EmprestimoDevolucaoDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Livro/Livro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Livro/Livro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Livro/LivroDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Livro/LivroDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Livro/LivroDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Livro/LivroDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Relatorio/Relatorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Relatorio/Relatorio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Usuario/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Usuario/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Usuario/UsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Usuario/UsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Usuario/UsuarioDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Usuario/UsuarioDAOImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2YRdkfo4JdJH2Q4xjz6KBvTJPUP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -24,6 +44,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "editor.preferences.gutterIcons",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -36,7 +62,11 @@
       <option name="presentableId" value="Default" />
       <updated>1700492473516</updated>
       <workItem from="1700492474686" duration="6000" />
+      <workItem from="1700501372119" duration="475000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
