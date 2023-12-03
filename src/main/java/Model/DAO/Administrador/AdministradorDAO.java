@@ -1,4 +1,6 @@
-package Administrador;
+package Model.DAO.Administrador;
+
+import Model.Entidade.Administrador;
 
 import java.util.List;
 
