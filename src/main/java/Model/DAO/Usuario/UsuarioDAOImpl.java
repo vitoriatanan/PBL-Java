@@ -1,10 +1,8 @@
 package Model.DAO.Usuario;
 
 import Model.DAO.Livro.LivroDAOImpl;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import Model.Entidade.Livro;
 import Model.Entidade.EmprestimoDevolucao;
@@ -14,6 +12,7 @@ import Model.Entidade.Usuario;
 public class UsuarioDAOImpl implements UsuarioDAO {
     private List<Usuario> usuarios;
     private LivroDAOImpl livroDAO;
+    private static int contadorUsuarios = 0;
 
     public UsuarioDAOImpl() {
         this.usuarios = new ArrayList<>();
@@ -22,12 +21,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public List<Usuario> create(Usuario usuario) {
+        usuario.setId(gerarIdUsuario());
         usuarios.add(usuario);
         return usuarios;
     }
 
     @Override
-    public Usuario read(Integer id) {
+    public Usuario read(String id) {
         for (Usuario usuario : usuarios) {
             if (usuario.getId().equals(id)) {
                 return usuario;
@@ -37,7 +37,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
-    public void update(Integer id, Usuario novoUsuario) {
+    public void update(String id, Usuario novoUsuario) {
         Usuario usuarioAntigo = read(id);
         if (usuarioAntigo != null) {
             usuarios.remove(usuarioAntigo);
@@ -51,6 +51,39 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return usuarios;
     }
 
+
+    /**
+    * Método que cria id aleatórios para o usuário
+    *
+    * @return   id do usuário
+    * */
+    public String gerarIdUsuario() {
+        Random rand = new Random();
+        String novoID;
+
+        // Loop para gerar um novo ID e verificar se já existe na lista de usuários
+        do {
+            int numeroAleatorio = rand.nextInt(1000);
+            novoID = "u" + numeroAleatorio;
+        } while (existeId(novoID));
+
+        return novoID;
+    }
+
+    /**
+    * Método auxiliar para verificar a existência de um ID na lista de usuários
+    *
+    * @param id     id a ser verificado
+    * @return       true se já existir um id e false caso contrário
+    * */
+    private boolean existeId(String id) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getId().equals(id)) {
+                return true; // ID encontrado, já existe
+            }
+        }
+        return false; // ID não encontrado, é único
+    }
 
     /**
      * Permite que o usuário realize pesquisa de livros
