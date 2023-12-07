@@ -6,7 +6,7 @@ public class Bibliotecario extends Pessoa {
     private String senhaAcesso;
 
     // Método Construtor
-    public Bibliotecario(String nome, Integer id, String cargo, String senhaAcesso) {
+    public Bibliotecario(String nome, String id, String cargo, String senhaAcesso) {
         super(nome, id);
         this.cargo = cargo;
         this.senhaAcesso = senhaAcesso;
