@@ -8,6 +8,8 @@ import Model.Entidade.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+
 import Model.DAO.Livro.LivroDAOImpl;
 import Model.DAO.Usuario.UsuarioDAOImpl;
 
@@ -25,12 +27,13 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
 
     @Override
     public List<Bibliotecario> create(Bibliotecario bibliotecario) {
+        bibliotecario.setId(gerarIdBibliotecario());
         bibliotecarios.add(bibliotecario);
         return bibliotecarios;
     }
 
     @Override
-    public Bibliotecario read(Integer id) {
+    public Bibliotecario read(String id) {
         for (Bibliotecario bibliotecario : bibliotecarios) {
             if (bibliotecario.getId().equals(id)) {
                 return bibliotecario;
@@ -40,7 +43,7 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
     }
 
     @Override
-    public void update(Integer id, Bibliotecario novoBibliotecario) {
+    public void update(String id, Bibliotecario novoBibliotecario) {
         Bibliotecario bibliotecarioAntigo = read(id);
         if (bibliotecarioAntigo != null) {
             bibliotecarios.remove(bibliotecarioAntigo);
@@ -53,6 +56,40 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
         this.bibliotecarios.remove(bibliotecario);
         return bibliotecarios;
     }
+
+    /**
+     * Método que cria id aleatórios para o bibliotecário
+     *
+     * @return   id do bibliotecário
+     * */
+    public String gerarIdBibliotecario() {
+        Random rand = new Random();
+        String novoID;
+
+        // Loop para gerar um novo ID e verificar se já existe na lista de bibliotecários
+        do {
+            int numeroAleatorio = rand.nextInt(1000);
+            novoID = "b" + numeroAleatorio;
+        } while (existeId(novoID));
+
+        return novoID;
+    }
+
+    /**
+     * Método auxiliar para verificar a existência de um ID na lista de bibliotecários
+     *
+     * @param id     id a ser verificado
+     * @return       true se já existir um id e false caso contrário
+     * */
+    private boolean existeId(String id) {
+        for (Bibliotecario bibliotecario : bibliotecarios) {
+            if (bibliotecario.getId().equals(id)) {
+                return true; // ID encontrado, já existe
+            }
+        }
+        return false; // ID não encontrado, é único
+    }
+
 
     /**
      * Permite que o biliotecário realize pesquisa de livros
