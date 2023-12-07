@@ -12,7 +12,7 @@ public class Usuario extends Pessoa {
     private double multa;
 
     // Método Construtor
-    public Usuario(String nome, Integer id, String endereco, String telefone) {
+    public Usuario(String nome, String id, String endereco, String telefone) {
         super(nome, id);
         this.endereco = endereco;
         this.telefone = telefone;
