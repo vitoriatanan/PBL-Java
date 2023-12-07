@@ -10,6 +10,7 @@ import Model.DAO.Usuario.UsuarioDAOImpl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class AdministradorDAOImpl implements AdministradorDAO {
     
@@ -25,12 +26,13 @@ public class AdministradorDAOImpl implements AdministradorDAO {
 
     @Override
     public List<Administrador> create(Administrador administrador) {
+        administrador.setId(gerarIdAdministrador());
         adms.add(administrador);
         return adms;
     }
 
     @Override
-    public Administrador read(Integer id) {
+    public Administrador read(String id) {
         for (Administrador administrador : adms) {
             if (administrador.getId().equals(id)) {
                 return administrador;
@@ -40,7 +42,7 @@ public class AdministradorDAOImpl implements AdministradorDAO {
     }
 
     @Override
-    public void update(Integer id, Administrador novoAdm){
+    public void update(String id, Administrador novoAdm){
         Administrador admAntigo = read(id);
         if (admAntigo != null) {
             adms.remove(admAntigo);
@@ -52,6 +54,39 @@ public class AdministradorDAOImpl implements AdministradorDAO {
     public List<Administrador> delete(Administrador administrador) {
         this.adms.remove(administrador);
         return adms;
+    }
+
+    /**
+     * Método que cria id aleatórios para o administrador
+     *
+     * @return   id do administrador
+     * */
+    public String gerarIdAdministrador() {
+        Random rand = new Random();
+        String novoID;
+
+        // Loop para gerar um novo ID e verificar se já existe na lista de adms
+        do {
+            int numeroAleatorio = rand.nextInt(1000);
+            novoID = "u" + numeroAleatorio;
+        } while (existeId(novoID));
+
+        return novoID;
+    }
+
+    /**
+     * Método auxiliar para verificar a existência de um ID na lista de adms
+     *
+     * @param id     id a ser verificado
+     * @return       true se já existir um id e false caso contrário
+     * */
+    private boolean existeId(String id) {
+        for (Administrador administrador : adms) {
+            if (administrador.getId().equals(id)) {
+                return true; // ID encontrado, já existe
+            }
+        }
+        return false; // ID não encontrado, é único
     }
 
 
