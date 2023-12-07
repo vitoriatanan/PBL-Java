@@ -6,7 +6,7 @@ public class Administrador extends Pessoa {
     private String senhaAcesso;
 
     // Método Construtor
-    public Administrador(String nome, Integer id, String cargo, String senhaAcesso) {
+    public Administrador(String nome, String id,  String cargo, String senhaAcesso) {
         super(nome, id);
         this.cargo = cargo;
         this.senhaAcesso = senhaAcesso;
