@@ -16,6 +16,7 @@ public class BibliotecarioDAOImplTest {
 
     private BibliotecarioDAOImpl bibliotecarioDAO;
     private Bibliotecario bibliotecarioTeste, bibliotecarioTeste2;
+
     @BeforeEach
     public void setUp() {
         bibliotecarioDAO = new BibliotecarioDAOImpl();
