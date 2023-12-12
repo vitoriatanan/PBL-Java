@@ -1,10 +1,14 @@
 package Model.Entidade;
 
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Livro {
+public class Livro implements Serializable {
     // Atributos
+    private static final long serialVersionUID = 2L;
+
     private String titulo;
     private String autor;
     private String editora;
@@ -13,6 +17,7 @@ public class Livro {
     private String categoria;
     private boolean livroDisponivel;
     private List<Usuario> usuariosReservados;
+
 
     // Construtor
     public Livro(String titulo, String autor, String editora, String isbn, Integer anoPublicacao, String categoria) {
