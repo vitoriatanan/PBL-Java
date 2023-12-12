@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario extends Pessoa {
+
     // Atributos
+    private String id;
     private String endereco;
     private String telefone;
     private List<EmprestimoDevolucao> emprestimos;
@@ -12,8 +14,8 @@ public class Usuario extends Pessoa {
     private double multa;
 
     // Método Construtor
-    public Usuario(String nome, String id, String endereco, String telefone) {
-        super(nome, id);
+    public Usuario(String nome, String endereco, String telefone) {
+        super(nome);
         this.endereco = endereco;
         this.telefone = telefone;
         this.emprestimos = new ArrayList<>();
@@ -23,6 +25,15 @@ public class Usuario extends Pessoa {
 
 
     // Métodos Acessores
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getEndereco() {
         return endereco;
     }
@@ -41,6 +52,10 @@ public class Usuario extends Pessoa {
 
     public List<EmprestimoDevolucao> getEmprestimos() {
         return emprestimos;
+    }
+
+    public void setEmprestimos(List<EmprestimoDevolucao> emprestimos) {
+        this.emprestimos = emprestimos;
     }
 
     public boolean isContaBloqueada() {
