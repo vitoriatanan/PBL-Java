@@ -1,12 +1,18 @@
 package Model.Entidade;
 
-import Model.Entidade.EmprestimoDevolucao;
-import Model.Entidade.Usuario;
-import Model.Entidade.Livro;
+import FileData.Entidade.Serializador;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
-public class Relatorio {
+public class Relatorio implements Serializable {
+
+    private static List<Integer> livrosEmprestados = new ArrayList<>();
+    private static List<Integer> livrosAtrasados = new ArrayList<>();
+    private static List<Integer> livrosReservados = new ArrayList<>();
 
     /**
      * Método que gera a quantidade de livros emprestados
@@ -14,12 +20,16 @@ public class Relatorio {
      * @param usuarios        Lista de usuários
      * @return                Total de livros emprestados
      * */
-    public static int quantidadeLivrosEmprestados(List<Usuario> usuarios) {
+    public static int quantidadeLivrosEmprestados(List<Usuario> usuarios) throws IOException {
         int quantidade = 0;
 
+        //ler o arquivo de emprestimos e contar a quantidade
         for (Usuario usuario : usuarios) {
             quantidade += usuario.getEmprestimos().size();
         }
+        livrosEmprestados.add(quantidade);
+        Serializador.salvarDados("relatorio.dat", livrosEmprestados);
+
         return quantidade;
     }
 
@@ -29,16 +39,22 @@ public class Relatorio {
      * @param usuarios        Lista de usuários
      * @return                Total de livros atrasados
      * */
-    public static int quantidadeLivrosAtrasados(List<Usuario> usuarios) {
+
+    public static int quantidadeLivrosAtrasados(List<Usuario> usuarios) throws IOException {
         int quantidade = 0;
 
         for (Usuario usuario : usuarios) {
             for (EmprestimoDevolucao emprestimo : usuario.getEmprestimos()) {
-                if (emprestimo.getDataDevolucaoReal() == null && new Date().after(emprestimo.getDataDevolucaoEsperada())) {
+                if (emprestimo.getDataDevolucaoReal() == null && Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()).after(
+                        Date.from(emprestimo.getDataDevolucaoEsperada().atStartOfDay(ZoneId.systemDefault()).toInstant()))) {
                     quantidade++;
                 }
             }
         }
+
+        livrosAtrasados.add(quantidade);
+        Serializador.salvarDados("relatorio.dat", livrosAtrasados);
+
         return quantidade;
     }
 
@@ -48,14 +64,18 @@ public class Relatorio {
      * @param livros      Lista de livros
      * @return            Total de livros reservados
      * */
-    public static int quantidadeLivrosReservados(List<Livro> livros) {
+    public static int quantidadeLivrosReservados(List<Livro> livros) throws IOException {
         int quantidade = 0;
 
         for (Livro livro : livros) {
             if (!livro.getUsuariosReservados().isEmpty()) {
-                quantidade ++;
+                quantidade++;
             }
         }
+
+        livrosReservados.add(quantidade);
+        Serializador.salvarDados("relatorio.dat", livrosReservados);
+
         return quantidade;
     }
 
@@ -75,7 +95,7 @@ public class Relatorio {
      * @param usuarios        Lista de usuários
      * @return                Lista de livros mais populares
      * */
-    public static List<Livro> livrosMaisPopulares(List<Usuario> usuarios) {
+    public static List<Livro> livrosMaisPopulares(List<Usuario> usuarios) throws IOException {
         Map<Livro, Integer> contagemLivros = new HashMap<>();
 
         /* Contagem de empréstimos para cada livro */
@@ -94,6 +114,8 @@ public class Relatorio {
         for (Map.Entry<Livro, Integer> entry : livrosOrdenados) {
             livrosMaisPopulares.add(entry.getKey());
         }
+
+        Serializador.salvarDados("relatorio.dat", livrosMaisPopulares);
 
         return livrosMaisPopulares;
     }
