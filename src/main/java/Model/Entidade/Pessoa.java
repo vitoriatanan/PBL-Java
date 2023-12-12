@@ -1,14 +1,15 @@
 package Model.Entidade;
 
-public abstract class Pessoa {
+
+import java.io.Serializable;
+
+public abstract class Pessoa implements Serializable {
     // Atributos
     private String nome;
-    private String id;
 
     // Construtor
-    public Pessoa(String nome, String id) {
+    public Pessoa(String nome) {
         this.nome = nome;
-        this.id = id;
     }
 
     // Métodos Acessores
@@ -20,11 +21,4 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }
