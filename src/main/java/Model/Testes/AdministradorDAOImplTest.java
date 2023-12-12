@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AdministradorDAOImplTest {
     private AdministradorDAOImpl administradorDAO;
     private Administrador admTeste, admTeste2;
+    
     @BeforeEach
     public void setUp() {
         administradorDAO = new AdministradorDAOImpl();
