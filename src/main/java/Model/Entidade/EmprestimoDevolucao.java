@@ -1,39 +1,46 @@
 package Model.Entidade;
 
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class EmprestimoDevolucao {
+public class EmprestimoDevolucao implements Serializable {
+    private static final long serialVersionUID = 2L;
     // Atributos
     private Livro livro;
     private Usuario usuario;
-    private Date dataEmprestimo;
-    private Date dataDevolucaoEsperada;
+    private LocalDate dataEmprestimo;
+    private LocalDate dataDevolucaoEsperada;
     private Date dataDevolucaoReal;
     private int renovacoes;
+    private List<EmprestimoDevolucao> listaDevolucoes;
 
     // Método Construtor
-    public EmprestimoDevolucao(Usuario usuario, Livro livro, Date dataEmprestimo, Date dataDevolucaoEsperada) {
+    public EmprestimoDevolucao(Usuario usuario, Livro livro, LocalDate dataEmprestimo, LocalDate dataDevolucaoEsperada) {
         this.livro = livro;
         this.usuario = usuario;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucaoEsperada = dataDevolucaoEsperada;
         this.renovacoes = 0;
+        this.listaDevolucoes = new ArrayList<>();
     }
 
 
-    public Date getDataEmprestimo() {
+    public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
 
-    public void setDataEmprestimo(Date dataEmprestimo) {
+    public void setDataEmprestimo(LocalDate dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
-    public Date getDataDevolucaoEsperada() {
+    public LocalDate getDataDevolucaoEsperada() {
         return dataDevolucaoEsperada;
     }
 
-    public void setDataDevolucaoEsperada(Date dataDevolucaoEsperada) {
+    public void setDataDevolucaoEsperada(LocalDate dataDevolucaoEsperada) {
         this.dataDevolucaoEsperada = dataDevolucaoEsperada;
     }
 
@@ -61,4 +68,11 @@ public class EmprestimoDevolucao {
         renovacoes++;
     }
 
+    public List<EmprestimoDevolucao> getListaDevolucoes() {
+        return listaDevolucoes;
+    }
+
+    public void setListaDevolucoes(List<EmprestimoDevolucao> listaDevolucoes) {
+        this.listaDevolucoes = listaDevolucoes;
+    }
 }
