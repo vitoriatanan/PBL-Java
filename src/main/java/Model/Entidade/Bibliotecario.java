@@ -2,17 +2,27 @@ package Model.Entidade;
 
 public class Bibliotecario extends Pessoa {
     // Atributos
+    private String id;
     private String cargo;
     private String senhaAcesso;
 
     // Método Construtor
-    public Bibliotecario(String nome, String id, String cargo, String senhaAcesso) {
-        super(nome, id);
+    public Bibliotecario(String nome, String cargo, String senhaAcesso) {
+        super(nome);
         this.cargo = cargo;
         this.senhaAcesso = senhaAcesso;
     }
 
     // Métodos Acessores
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getCargo() {
         return cargo;
     }
