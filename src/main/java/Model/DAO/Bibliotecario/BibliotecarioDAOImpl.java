@@ -1,10 +1,12 @@
 package Model.DAO.Bibliotecario;
 
+import FileData.Entidade.Serializador;
 import Model.Entidade.Bibliotecario;
 import Model.Entidade.EmprestimoDevolucao;
 import Model.Entidade.Livro;
 import Model.Entidade.Usuario;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,16 +27,41 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
         this.usuarioDAO = new UsuarioDAOImpl();
     }
 
+    /**
+     * Responsável por adicionar um novo bibliotecário ao sistema.
+     *
+     * Gera um novo id para o bibliotecário, adiciona o bibliotecário à
+     * lista de bibliotecários e salva a lista atualizada de usuários
+     * no arquivo "bibliotecario.dat".
+     *
+     * @param bibliotecario     bibliotecário a ser adicionado
+     * @return                  lista de bibliotecarios
+     * */
     @Override
-    public List<Bibliotecario> create(Bibliotecario bibliotecario) {
+    public List<Bibliotecario> create(Bibliotecario bibliotecario) throws IOException {
         bibliotecario.setId(gerarIdBibliotecario());
         bibliotecarios.add(bibliotecario);
+        Serializador.salvarDados("bibliotecario.dat", bibliotecarios);
         return bibliotecarios;
     }
 
-    @Override
-    public Bibliotecario read(String id) {
-        for (Bibliotecario bibliotecario : bibliotecarios) {
+
+    /**
+     * Responsável por procurar um bibliotecário com um id específico
+     * na lista de bibliotecários.
+     *
+     * Faz a leitura do arquivo "bibliotecario.dat", itera sobre a lista
+     * e verifica se cada bibliotecário possui o id.
+     *
+     * @param id    id do bibliotecário a ser procurado
+     * @return      bibliotecário que possui o id ou nulo se o bibliotecário não foi encontrado
+     * */
+     @Override
+    public Bibliotecario read(String id) throws IOException, ClassNotFoundException {
+        ArrayList<Bibliotecario> listaBibliotecario = new ArrayList<Bibliotecario>();
+        listaBibliotecario = (ArrayList<Bibliotecario>) Serializador.leituraDados("bibliotecario.dat");
+
+        for (Bibliotecario bibliotecario : listaBibliotecario) {
             if (bibliotecario.getId().equals(id)) {
                 return bibliotecario;
             }
@@ -42,20 +69,49 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
         return null;
     }
 
+    /**
+     * Responsável por atualizar informações de um bibliotecario no sistema.
+     *
+     * Faz a leitura do arquivo para obter a lista atual de bibliotecarios,
+     * remove o bibliotecário antigo, adiciona o novo bibliotecário à lista
+     * e salva  no arquivo "bibliotecario.dat".
+     *
+     * @param id                    id do bibliotecário
+     * @param novoBibliotecario     dados do bibliotecário a serem atualizadas
+     * */
     @Override
-    public void update(String id, Bibliotecario novoBibliotecario) {
-        Bibliotecario bibliotecarioAntigo = read(id);
-        if (bibliotecarioAntigo != null) {
-            bibliotecarios.remove(bibliotecarioAntigo);
-            bibliotecarios.add(novoBibliotecario);
+    public void update(String id, Bibliotecario novoBibliotecario) throws IOException, ClassNotFoundException {
+        ArrayList<Bibliotecario> listaBibliotecario = (ArrayList<Bibliotecario>) Serializador.leituraDados("bibliotecario.dat");
+
+        for (int i = 0; i < listaBibliotecario.size(); i++) {
+            if (listaBibliotecario.get(i).getId().equals(id)) {
+                // Atualiza apenas os campos necessários
+                listaBibliotecario.get(i).setNome(novoBibliotecario.getNome());
+                listaBibliotecario.get(i).setCargo(novoBibliotecario.getCargo());
+                listaBibliotecario.get(i).setSenhaAcesso(novoBibliotecario.getSenhaAcesso());
+
+                Serializador.salvarDados("bibliotecario.dat", listaBibliotecario);
+                break;
+            }
         }
     }
 
+    /**
+     * Responsável por remover um bibliotecário do sistema.
+     *
+     * Verifica o bibliotecário a ser removido, remove o bibliotecário e salva a lista
+     * modificada no arquivo "bibliotecario.dat".
+     *
+     * @param bibliotecario     bibliotecario a ser removido.
+     * @return                  lista atualizada.
+     * */
     @Override
-    public List<Bibliotecario> delete(Bibliotecario bibliotecario) {
-        this.bibliotecarios.remove(bibliotecario);
+    public List<Bibliotecario> delete(Bibliotecario bibliotecario) throws IOException, ClassNotFoundException {
+        bibliotecarios.remove(bibliotecario);
+        Serializador.salvarDados("bibliotecario.dat", bibliotecarios);
         return bibliotecarios;
     }
+
 
     /**
      * Método que cria id aleatórios para o bibliotecário
@@ -103,13 +159,14 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
     }
 
 
+
     /**
      * Registra novo livro na biblioteca
      *
      * @param livro    Livro a ser registrado
      * @return         Lista de livros após o registro
      * */
-    public List<Livro> registrarLivros(Livro livro) {
+    public List<Livro> registrarLivros(Livro livro) throws IOException {
         livroDAO.create(livro);
         return livroDAO.getLivros();
     }
@@ -119,7 +176,7 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
      * @param livro      Livro a ser emprestado
      * @param usuario    Usuario que fará o empréstimo
      * */
-    public EmprestimoDevolucao realizarEmprestimo(Livro livro, Usuario usuario) {
+    public EmprestimoDevolucao realizarEmprestimo(Livro livro, Usuario usuario) throws IOException, ClassNotFoundException {
         EmprestimoDevolucao emprestimo = usuarioDAO.realizarEmprestimo(livro, usuario);
         return emprestimo;
     }
@@ -131,7 +188,8 @@ public class BibliotecarioDAOImpl implements BibliotecarioDAO {
      * @param emprestimo           Empréstimo realizado pelo usuário
      * @param dataDevolucaoReal    Data de devolução do livro
      * */
-    public void realizarDevolucao(EmprestimoDevolucao emprestimo, Date dataDevolucaoReal, Usuario usuario) {
+
+    public void realizarDevolucao(EmprestimoDevolucao emprestimo, Date dataDevolucaoReal, Usuario usuario) throws IOException {
         usuarioDAO.realizarDevolucao(emprestimo, dataDevolucaoReal, usuario);
     }
 }
