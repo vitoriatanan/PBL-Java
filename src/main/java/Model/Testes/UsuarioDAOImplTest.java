@@ -18,6 +18,7 @@ public class UsuarioDAOImplTest {
     private UsuarioDAOImpl usuarioDAO;
     private Usuario usuarioTeste, usuarioTeste2;
 
+    
     @BeforeEach
     public void setUp() {
         usuarioDAO = new UsuarioDAOImpl();
