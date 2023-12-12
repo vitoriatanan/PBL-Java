@@ -22,7 +22,6 @@ public class EmprestimoDevolucaoDAOImplTest {
     private Livro livroTeste, livroTeste2;
     private EmprestimoDevolucaoDAOImpl emprestimoDevolucaoDAO;
     private EmprestimoDevolucao emprestimoDevolucaoTeste, emprestimoDevolucaoTeste2;
-
     @BeforeEach
     public void setUp() {
         usuarioTeste = new Usuario("Lara Levy", "Rua A", "87877");
